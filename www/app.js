@@ -35,7 +35,7 @@ const TX = {
   amt: ['Amount', 'จำนวน'],
   menu: ['Menu', 'เมนู'],
   sound: ['Button sounds: on / off', 'เสียงปุ่ม: เปิด / ปิด'],
-  lang: ['Language: English → ไทย', 'ภาษา: ไทย → English'],
+  language: ['Language', 'ภาษา'],
   currency: ['Change currency symbol', 'เปลี่ยนสัญลักษณ์เงิน'],
   currencyAsk: ['Currency symbol (for example ฿ or $)', 'สัญลักษณ์เงิน (เช่น ฿ หรือ $)'],
   csv: ['Export CSV', 'ส่งออก CSV'],
@@ -424,7 +424,8 @@ function pieChart(data, cols, sum) {
 /* ---------- menu / backup ---------- */
 function openMenu() {
   const sh = sheet(h('div', { class: 'menu' }, [
-    h('button', { type: 'button', onclick: () => { db.lang = db.lang === 'en' ? 'th' : 'en'; persist(); sh.remove(); render(); } }, t('lang')),
+    h('div', { class: 'langrow' }, h('b', {}, t('language')),
+      h('div', { class: 'seg' }, ['en', 'th'].map((c) => h('button', { type: 'button', class: 'lang' + (db.lang === c ? ' on' : ''), onclick: () => { db.lang = c; persist(); sh.remove(); render(); openMenu(); } }, c === 'en' ? 'English' : 'ไทย')))),
     h('button', { type: 'button', onclick: () => { db.sound = db.sound === false; persist(); sh.remove(); toast(db.sound ? 'Sound on' : 'Sound off'); } }, t('sound') + (db.sound === false ? ' (off)' : ' (on)')),
     h('button', { type: 'button', onclick: () => { const v = prompt(t('currencyAsk'), db.cur); if (v != null && v.trim()) { db.cur = v.trim().slice(0, 4); persist(); sh.remove(); render(); } } }, t('currency')),
     h('button', { type: 'button', onclick: () => download('aug-jar.csv', 'text/csv', csv()) }, t('csv')),

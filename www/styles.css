@@ -111,3 +111,7 @@ table.book{min-width:0;font-size:12px}
 .pencil{width:30px;height:30px;font-size:14px}
 .pie svg{width:140px;height:140px}
 .legend{min-width:150px}
+
+.langrow{margin-bottom:8px}
+.langrow .seg{margin:6px 0 0}
+.seg button.lang.on{background:var(--accent);color:#052a28;border-color:var(--accent)}
