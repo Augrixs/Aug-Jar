@@ -45,3 +45,69 @@ h2{font-size:15px;margin:14px 4px 6px;color:var(--muted);font-weight:600}
 .err{color:var(--down);font-size:13px;min-height:18px}
 .menu button{display:block;width:100%;background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:12px;margin-bottom:8px;text-align:left}
 .toast{position:fixed;left:50%;transform:translateX(-50%);bottom:90px;background:#000c;padding:10px 16px;border-radius:999px;z-index:9;font-size:14px}
+
+/* notebook table */
+.addrow{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px}
+.addbtn{border:1px solid;border-radius:14px;padding:13px;font-weight:800;font-size:16px}
+.addbtn.dep{background:#0f3d3a;border-color:var(--up);color:var(--up)}
+.addbtn.wd{background:#40161f;border-color:var(--down);color:var(--down)}
+.pager{display:flex;align-items:center;justify-content:space-between;margin:6px 0 8px}
+.nav.ph{visibility:hidden;display:inline-block}
+.tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:14px;background:var(--panel);margin-bottom:84px}
+table.book{border-collapse:collapse;min-width:560px;width:100%;font-size:13px}
+.book th{background:var(--panel2);color:var(--muted);font-weight:600;text-align:left;padding:8px 6px;position:sticky;top:0}
+.book td{padding:7px 6px;border-top:1px solid var(--line);vertical-align:middle}
+.book .no{color:var(--muted);width:28px;text-align:center}
+.book tr.blank td{height:38px}
+.book tr.dep{background:rgba(45,212,191,.13)}
+.book tr.wd{background:rgba(251,113,133,.14)}
+.book .tm{color:var(--muted);font-size:12px}
+.book .ty{font-weight:700}
+.book tr.dep .ty,.book tr.dep .am{color:var(--up)}
+.book tr.wd .ty,.book tr.wd .am{color:var(--down)}
+.book .am,.book .ba{font-weight:700;white-space:nowrap}
+.book .ba.neg{color:var(--down)}
+.book .nt{max-width:150px;word-break:break-word}
+.pencil{background:var(--panel2);border:1px solid var(--line);border-radius:10px;width:34px;height:34px;font-size:16px}
+/* tab bar */
+.tabbar{position:fixed;left:0;right:0;bottom:0;display:flex;justify-content:center;gap:8px;padding:10px 14px max(12px,env(safe-area-inset-bottom));background:linear-gradient(transparent,#0f1720 40%)}
+.tabbar button{flex:1;max-width:240px;background:var(--panel2);border:1px solid var(--line);border-radius:999px;padding:12px;font-weight:700}
+.tabbar button.on{background:var(--accent);color:#052a28;border-color:var(--accent)}
+/* sheets */
+.stamp{color:var(--muted);font-size:14px;margin:2px 0 10px}
+.save.wd{background:var(--down);color:#2a0710}
+.seg button.on.dep{background:#0f3d3a;border-color:var(--up);color:var(--up)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+/* charts */
+.seg3{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:6px}
+.seg3 button{background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:10px;font-weight:700}
+.seg3 button.on{background:var(--accent);color:#052a28;border-color:var(--accent)}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:12px;margin-bottom:12px}
+.card h2{margin:0 0 6px;font-size:16px;color:inherit}
+.topline{margin-bottom:6px;font-size:14px}
+.scrollx{overflow-x:auto}
+.pie{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-top:10px}
+.legend{flex:1;min-width:170px;font-size:13px}
+.lg{display:flex;align-items:center;gap:6px;margin:3px 0}
+.dot{width:10px;height:10px;border-radius:50%;flex:none}
+.lgl{flex:1}
+.lgv{color:var(--muted)}
+
+@keyframes pop-bounce{0%{transform:scale(1)}35%{transform:scale(.9)}70%{transform:scale(1.06)}100%{transform:scale(1)}}
+button.pop{animation:pop-bounce .22s ease}
+button{transition:transform .12s ease}
+button:active{transform:scale(.94)}
+
+/* keep the pencil in view and fit more columns */
+table.book{min-width:0;font-size:12px}
+.book th,.book td{padding:6px 4px}
+.book .no{width:22px}
+.book .dt{white-space:nowrap}
+.book .nt{min-width:70px;max-width:110px}
+.book th.ed,.book td.ed{position:sticky;right:0;width:40px;text-align:center;background:var(--panel2)}
+.book tr.dep td.ed{background:#173f3f}
+.book tr.wd td.ed{background:#3a1d29}
+.book tr.blank td.ed{background:var(--panel)}
+.pencil{width:30px;height:30px;font-size:14px}
+.pie svg{width:140px;height:140px}
+.legend{min-width:150px}
