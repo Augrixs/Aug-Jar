@@ -1,0 +1,6 @@
+{
+  "appId": "com.augrixs.savingslog",
+  "appName": "Aug Jar",
+  "webDir": "www",
+  "server": { "androidScheme": "https" }
+}
