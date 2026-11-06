@@ -1,1 +1,27 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><rect width="512" height="512" rx="110" fill="#0f1720"/><circle cx="256" cy="256" r="150" fill="#2dd4bf"/><path d="M256 170v172M214 214c0-26 84-26 84 0s-84 30-84 56 84 30 84 0" fill="none" stroke="#0f1720" stroke-width="22" stroke-linecap="round"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0f1720"/><stop offset="1" stop-color="#14524c"/></linearGradient>
+    <linearGradient id="glass" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#ffffff" stop-opacity=".30"/><stop offset=".5" stop-color="#ffffff" stop-opacity=".10"/><stop offset="1" stop-color="#ffffff" stop-opacity=".22"/></linearGradient>
+    <linearGradient id="coin" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5eead4"/><stop offset="1" stop-color="#14b8a6"/></linearGradient>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fde68a"/><stop offset="1" stop-color="#f59e0b"/></linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="112" fill="url(#bg)"/>
+  <!-- falling coin -->
+  <ellipse cx="256" cy="86" rx="62" ry="62" fill="url(#gold)"/>
+  <ellipse cx="256" cy="86" rx="46" ry="46" fill="none" stroke="#b45309" stroke-opacity=".55" stroke-width="8"/>
+  <path d="M256 62v48M240 76c0-12 32-12 32 0s-32 12-32 24 32 12 32 0" fill="none" stroke="#b45309" stroke-opacity=".8" stroke-width="9" stroke-linecap="round"/>
+  <!-- coins inside the jar -->
+  <g>
+    <ellipse cx="256" cy="402" rx="112" ry="26" fill="#0d9488"/>
+    <rect x="144" y="372" width="224" height="30" fill="url(#coin)"/>
+    <ellipse cx="256" cy="372" rx="112" ry="26" fill="#5eead4"/>
+    <rect x="160" y="336" width="192" height="28" fill="url(#coin)"/>
+    <ellipse cx="256" cy="336" rx="96" ry="22" fill="#99f6e4"/>
+    <rect x="178" y="304" width="156" height="26" fill="url(#coin)"/>
+    <ellipse cx="256" cy="304" rx="78" ry="19" fill="#ccfbf1"/>
+  </g>
+  <!-- jar glass -->
+  <path d="M168 190h176v26c40 20 56 52 56 92v118c0 28-22 48-50 48H162c-28 0-50-20-50-48V308c0-40 16-72 56-92z" fill="url(#glass)" stroke="#e6fffb" stroke-opacity=".75" stroke-width="10" stroke-linejoin="round"/>
+  <rect x="152" y="160" width="208" height="36" rx="14" fill="#e6fffb" fill-opacity=".9"/>
+  <path d="M150 300c0 30 4 70 10 96" stroke="#fff" stroke-opacity=".55" stroke-width="12" stroke-linecap="round" fill="none"/>
+</svg>
