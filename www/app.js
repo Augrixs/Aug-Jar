@@ -3,6 +3,7 @@
 
 const KEY = 'aug-jar-v1';
 const ROWS = 31; // rows per table
+const MAX_AMOUNT = 999999999.99; // largest single amount
 const MON = { en: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'], th: ['ม.ค.', 'ก.พ.', 'มี.ค.', 'เม.ย.', 'พ.ค.', 'มิ.ย.', 'ก.ค.', 'ส.ค.', 'ก.ย.', 'ต.ค.', 'พ.ย.', 'ธ.ค.'] };
 const MONFULL = { en: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'], th: ['มกราคม', 'กุมภาพันธ์', 'มีนาคม', 'เมษายน', 'พฤษภาคม', 'มิถุนายน', 'กรกฎาคม', 'สิงหาคม', 'กันยายน', 'ตุลาคม', 'พฤศจิกายน', 'ธันวาคม'] };
 const DAYFULL = { en: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'], th: ['วันอาทิตย์', 'วันจันทร์', 'วันอังคาร', 'วันพุธ', 'วันพฤหัสบดี', 'วันศุกร์', 'วันเสาร์'] };
@@ -21,7 +22,7 @@ const TX = {
   noteDep: ['Note: where did it come from?', 'โน้ต: ได้มาจากไหน'],
   noteWd: ['Note: what was it for?', 'โน้ต: เอาไปทำอะไร'],
   cancel: ['Cancel', 'ยกเลิก'],
-  badAmount: ['Type an amount above 0', 'ใส่จำนวนเงินมากกว่า 0'],
+  badAmount: ['Type an amount above 0 (up to 999,999,999)', 'ใส่จำนวนเงินมากกว่า 0 (ไม่เกิน 999,999,999)'],
   saved: ['Saved', 'บันทึกแล้ว'],
   del: ['Delete this entry', 'ลบรายการนี้'],
   delAsk: ['Delete this entry? The balance changes.', 'ลบรายการนี้ใช่ไหม ยอดคงเหลือจะเปลี่ยน'],
@@ -157,13 +158,19 @@ function render() {
   const T = totals();
   $app.replaceChildren(
     h('div', { class: 'top' }, h('h1', {}, t('title')), h('button', { class: 'chip', type: 'button', onclick: openMenu }, '☰ ' + t('menu'))),
-    h('div', { class: 'balance' }, h('small', {}, t('balance')), h('div', { class: 'big' + (T.bal < 0 ? ' down' : '') }, money(T.bal)),
+    h('div', { class: 'balance' }, h('small', {}, t('balance')), bigBalance(T.bal),
       h('div', { class: 'row' }, h('span', { class: 'up' }, `${t('deposited')} ${money(T.dep)}`))),
     tab === 'book' ? bookView() : chartsView(),
     h('nav', { class: 'tabbar' },
       h('button', { type: 'button', class: tab === 'book' ? 'on' : '', onclick: () => { tab = 'book'; render(); } }, '📒 ' + t('book')),
       h('button', { type: 'button', class: tab === 'charts' ? 'on' : '', onclick: () => { tab = 'charts'; render(); } }, '📊 ' + t('charts'))),
   );
+}
+
+function bigBalance(bal) {
+  const txt = money(bal);
+  const size = txt.length > 20 ? 18 : txt.length > 16 ? 22 : txt.length > 13 ? 26 : txt.length > 10 ? 32 : 38;
+  return h('div', { class: 'big' + (bal < 0 ? ' down' : ''), style: `font-size:${size}px` }, txt);
 }
 
 /* ---------- notebook ---------- */
@@ -231,7 +238,7 @@ function openAdd(type) {
   ]);
   function save() {
     const n = round2(parseFloat(String(amt.value).replace(/,/g, '')));
-    if (!Number.isFinite(n) || n <= 0) { err.textContent = t('badAmount'); return; }
+    if (!Number.isFinite(n) || n <= 0 || n > MAX_AMOUNT) { err.textContent = t('badAmount'); return; }
     const at = new Date();
     const entry = { id: Date.now().toString(36) + Math.random().toString(36).slice(2, 6), ts: at.getTime(), type, amount: n, note: note.value.trim() };
     db.entries.push(entry);
@@ -250,8 +257,6 @@ function openEdit(e) {
   const d = new Date(e.ts);
   const amt = h('input', { class: 'input num', type: 'text', inputmode: 'decimal', value: String(e.amount), 'aria-label': t('amount') });
   const note = h('input', { class: 'input', type: 'text', maxlength: '120', value: e.note || '', placeholder: t('note') });
-  const date = h('input', { class: 'input', type: 'date', value: dayKey(d) });
-  const time = h('input', { class: 'input', type: 'time', value: fmtTime(d) });
   const err = h('div', { class: 'err' });
   const dep = h('button', { type: 'button', class: 'dep' + (type === 'dep' ? ' on' : '') }, '+ ' + t('deposit'));
   const wd = h('button', { type: 'button', class: 'wd' + (type === 'wd' ? ' on' : '') }, '− ' + t('withdraw'));
@@ -262,7 +267,7 @@ function openEdit(e) {
     h('h3', {}, t('edit')),
     h('div', { class: 'seg' }, dep, wd),
     amt, note,
-    h('div', { class: 'two' }, date, time),
+    h('div', { class: 'stamp' }, `${fmtLong(d)} ${fmtTime(d)}`),
     err,
     h('button', { class: 'save dep', type: 'button', onclick: save }, t('saved').replace('Saved', 'Save').replace('บันทึกแล้ว', 'บันทึก')),
     h('button', { class: 'ghost danger', type: 'button', onclick: () => { if (!confirm(t('delAsk'))) return; db.entries = db.entries.filter((x) => x.id !== e.id); persist(); sh.remove(); render(); toast(t('deleted')); } }, t('del')),
@@ -270,12 +275,8 @@ function openEdit(e) {
   ]);
   function save() {
     const n = round2(parseFloat(String(amt.value).replace(/,/g, '')));
-    if (!Number.isFinite(n) || n <= 0) { err.textContent = t('badAmount'); return; }
-    const [y, mo, da] = String(date.value || dayKey(d)).split('-').map(Number);
-    const [hh, mm] = String(time.value || fmtTime(d)).split(':').map(Number);
-    const ts = new Date(y, mo - 1, da, hh, mm, d.getSeconds()).getTime();
-    if (!Number.isFinite(ts)) { err.textContent = t('date'); return; }
-    Object.assign(e, { type, amount: n, note: note.value.trim(), ts });
+    if (!Number.isFinite(n) || n <= 0 || n > MAX_AMOUNT) { err.textContent = t('badAmount'); return; }
+    Object.assign(e, { type, amount: n, note: note.value.trim() }); // the date and time stay as first saved
     persist(); sh.remove(); render(); toast(t('saved'));
   }
 }
@@ -306,8 +307,8 @@ function buckets() {
       const a = new Date(s); a.setDate(s.getDate() + i);
       const b = new Date(a); b.setDate(a.getDate() + 1);
       if (first && b <= startOfDay(first)) continue;
-      if (a > today) continue;
       add(DAYFULL[L()][a.getDay()].replace('วัน', ''), a, b);
+      if (a > today && !out[out.length - 1].dep && !out[out.length - 1].wd) out.pop();
     }
   } else if (mode === 'month') {
     const y = anchor.getFullYear(), m = anchor.getMonth();
@@ -316,8 +317,8 @@ function buckets() {
     for (let i = 1; i <= n; i++) {
       const a = new Date(y, m, i), b = new Date(y, m, i + 1);
       if (first && b <= startOfDay(first)) continue;
-      if (a > today) continue;
       add(`${i} ${MON[L()][m]}`, a, b);
+      if (a > today && !out[out.length - 1].dep && !out[out.length - 1].wd) out.pop();
     }
   } else {
     const y = anchor.getFullYear();
@@ -325,8 +326,8 @@ function buckets() {
     for (let m = 0; m < 12; m++) {
       const a = new Date(y, m, 1), b = new Date(y, m + 1, 1);
       if (first && b <= startOfDay(first)) continue;
-      if (a > today) continue;
       add(MON[L()][m], a, b);
+      if (a > today && !out[out.length - 1].dep && !out[out.length - 1].wd) out.pop();
     }
   }
   return { list: out, title };
