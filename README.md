@@ -7,3 +7,8 @@ A simple notebook for people who love saving money. Tap a day, choose Deposit or
 - No account, no login, no ads. Data stays on the phone (each device has its own).
 
 Aug Jar is not a bank and does not hold or move real money. It only records numbers you type.
+
+## Play Store checklist
+- Package name: `com.augrixs.augjar` (permanent once published)
+- Privacy policy: https://augrixs.github.io/Aug-Jar/privacy.html (enable Pages: Settings > Pages > Source: GitHub Actions)
+- Release build: Actions > "Release AAB (Play Store)" > Run workflow (needs secret `KEYSTORE_PASSWORD`, 12+ characters)
