@@ -394,7 +394,8 @@ function barChart(data, color, top) {
     const y = H - pb - bh;
     svg.append(svgEl('rect', { x, y, width: bw, height: bh, rx: 4, fill: color, opacity: d === top ? 1 : 0.55 }));
     if (d.v) svg.append(svgEl('text', { x: x + bw / 2, y: y - 5, 'text-anchor': 'middle', fill: '#eaf2f8', 'font-size': 10 }, shortNum(d.v)));
-    const lab = d.label.length > 9 && data.length > 7 ? d.label.split(' ')[0] : d.label;
+    let lab = d.label.length > 9 && data.length > 7 ? d.label.split(' ')[0] : d.label;
+    if (mode === 'week' && L() === 'en' && data.length > 4) lab = lab.slice(0, 3);
     svg.append(svgEl('text', { x: x + bw / 2, y: H - pb + 15, 'text-anchor': 'middle', fill: '#8ea3b5', 'font-size': 10 }, lab.length > 10 ? lab.slice(0, 9) + '…' : lab));
   });
   return svg;
