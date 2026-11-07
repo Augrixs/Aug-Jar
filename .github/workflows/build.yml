@@ -41,5 +41,5 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           cp android/app/build/outputs/apk/debug/app-debug.apk AugJar.apk
-          gh release view latest >/dev/null 2>&1 || gh release create latest --title "Aug Jar (latest APK)" --notes "Latest Android build of Aug Jar."
+          gh release view latest >/dev/null 2>&1 || gh release create latest --title "Daily Jar (latest APK)" --notes "Latest Android build of Daily Jar."
           gh release upload latest AugJar.apk --clobber

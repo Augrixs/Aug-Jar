@@ -33,7 +33,7 @@ jobs:
       - name: Create the upload key once
         run: |
           if [ ! -f native/upload.jks ]; then
-            keytool -genkeypair -keystore native/upload.jks -alias augrant -keyalg RSA -keysize 2048 -validity 10000 -storepass:env KS_PASS -keypass:env KS_PASS -dname "CN=Aug Jar"
+            keytool -genkeypair -keystore native/upload.jks -alias augrant -keyalg RSA -keysize 2048 -validity 10000 -storepass:env KS_PASS -keypass:env KS_PASS -dname "CN=Daily Jar"
             git config user.name "github-actions"
             git config user.email "actions@users.noreply.github.com"
             git add native/upload.jks

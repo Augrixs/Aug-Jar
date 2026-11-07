@@ -1,5 +1,5 @@
 'use strict';
-/* Aug Jar: a deposit / withdraw notebook. Data stays on this device (localStorage). Years are always CE. */
+/* Daily Jar: a deposit / withdraw notebook. Data stays on this device (localStorage). Years are always CE. */
 
 const KEY = 'aug-jar-v1';
 const ROWS = 31; // rows per table
@@ -9,7 +9,7 @@ const MONFULL = { en: ['January', 'February', 'March', 'April', 'May', 'June', '
 const DAYFULL = { en: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'], th: ['วันอาทิตย์', 'วันจันทร์', 'วันอังคาร', 'วันพุธ', 'วันพฤหัสบดี', 'วันศุกร์', 'วันเสาร์'] };
 const DAYSHORT = { en: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'], th: ['อา.', 'จ.', 'อ.', 'พ.', 'พฤ.', 'ศ.', 'ส.'] };
 const TX = {
-  title: ['Aug Jar', 'Aug Jar'],
+  title: ['Daily Jar', 'Daily Jar'],
   balance: ['Savings', 'เงินออมคงเหลือ'],
   deposited: ['Deposited', 'ฝากรวม'],
   book: ['Notebook', 'สมุด'],
