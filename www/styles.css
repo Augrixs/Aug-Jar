@@ -124,3 +124,5 @@ html,body{overflow-x:hidden;max-width:100vw}
 .book .nt{overflow-wrap:anywhere}
 .tablewrap{max-width:100%}
 .legend{min-width:0}
+
+html.ads .tabbar{bottom:60px}html.ads .fab{bottom:calc(60px + max(18px,env(safe-area-inset-bottom)))}html.ads body{padding-bottom:60px}html.ads .toast{bottom:150px}

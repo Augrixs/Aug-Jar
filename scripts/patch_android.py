@@ -57,4 +57,16 @@ if n != 1:
     fail('could not find versionCode in app/build.gradle')
 gr = re.sub(r'versionName\s+"[^"]*"', 'versionName "1.0"', gr, count=1)
 open(gr_path, 'w', encoding='utf-8').write(gr)
+# AdMob app id in the manifest (from www/ads-config.json)
+import json
+cfg = json.load(open(os.path.join(ROOT, 'www', 'ads-config.json'), encoding='utf-8'))
+mf_path = os.path.join(APP, 'src', 'main', 'AndroidManifest.xml')
+mf = open(mf_path, encoding='utf-8').read()
+if 'com.google.android.gms.ads.APPLICATION_ID' not in mf:
+    meta = '<meta-data android:name="com.google.android.gms.ads.APPLICATION_ID" android:value="%s"/>\n    </application>' % cfg['appId']
+    mf, n = re.subn(r'</application>', meta, mf, count=1)
+    if n != 1:
+        fail('could not add AdMob id to AndroidManifest.xml')
+    open(mf_path, 'w', encoding='utf-8').write(mf)
+
 print('Android project patched. versionCode =', run)

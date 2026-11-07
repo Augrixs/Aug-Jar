@@ -4,7 +4,7 @@ A simple notebook for people who love saving money. Tap a day, choose Deposit or
 
 - Savings balance, calendar with each day's net amount, full history with notes
 - Back up / restore, export CSV, English and Thai
-- No account, no login, no ads. Data stays on the phone (each device has its own).
+- No account, no login, AdMob banner in the Android app only (test ads until real IDs are put in www/ads-config.json). Data stays on the phone (each device has its own).
 
 Daily Jar is not a bank and does not hold or move real money. It only records numbers you type.
 

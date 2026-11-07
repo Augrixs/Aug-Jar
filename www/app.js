@@ -462,4 +462,22 @@ function restore(sh) {
 }
 
 render();
+// Ads: native Android app only (AdMob banner at the bottom). Settings live in ads-config.json.
+(async function initAds() {
+  try {
+    const cap = window.Capacitor;
+    if (!cap || !cap.isNativePlatform || !cap.isNativePlatform()) return;
+    const cfg = await (await fetch('ads-config.json')).json();
+    const A = cap.Plugins && cap.Plugins.AdMob;
+    if (!cfg.enabled || !A) return;
+    try {
+      const info = await A.requestConsentInfo();
+      if (info && info.isConsentFormAvailable && info.status === 'REQUIRED') await A.showConsentForm();
+    } catch {}
+    await A.initialize({ initializeForTesting: !!cfg.testing });
+    A.addListener('bannerAdLoaded', () => document.documentElement.classList.add('ads'));
+    A.addListener('bannerAdFailedToLoad', () => document.documentElement.classList.remove('ads'));
+    await A.showBanner({ adId: cfg.banner, adSize: 'BANNER', position: 'BOTTOM_CENTER', margin: 0, isTesting: !!cfg.testing });
+  } catch {}
+})();
 if ('serviceWorker' in navigator && location.protocol.startsWith('http')) navigator.serviceWorker.register('sw.js').catch(() => {});
