@@ -1,5 +1,5 @@
 {
-  "appId": "com.augrixs.augjar",
+  "appId": "com.augrixs.dailyjar",
   "appName": "Daily Jar",
   "webDir": "www",
   "server": { "androidScheme": "https" }

@@ -69,7 +69,7 @@ html[data-lang="en"] span[data-l="en"],html[data-lang="th"] span[data-l="th"]{di
     <h1><span data-l="en">Your simple<br>savings notebook.</span><span data-l="th">สมุดออมเงิน<br>แบบง่ายๆ ของคุณ</span></h1>
     <p class="lead"><span data-l="en">Tap Deposit or Withdraw, type the amount, add a note. Daily Jar writes the date and time for you and keeps a running balance, like a real notebook.</span><span data-l="th">กดฝากหรือถอน พิมพ์จำนวนเงิน เขียนโน้ต Daily Jar ลงวันที่และเวลาให้เอง พร้อมยอดคงเหลือสะสม เหมือนสมุดจริง</span></p>
     <div class="cta">
-      <a class="btn primary" href="https://github.com/Augrixs/Aug-Jar/releases/download/latest/AugJar.apk">⬇ <span data-l="en">Download for Android (APK)</span><span data-l="th">โหลดสำหรับ Android (APK)</span></a>
+      <a class="btn primary" href="https://github.com/Augrixs/Daily-Jar/releases/download/latest/DailyJar.apk">⬇ <span data-l="en">Download for Android (APK)</span><span data-l="th">โหลดสำหรับ Android (APK)</span></a>
       <a class="btn" href="app/">🌐 <span data-l="en">Open web app</span><span data-l="th">เปิดเว็บแอป</span></a>
     </div>
     <p class="small"><span data-l="en">Free · No login · No ads · Your data stays on your phone</span><span data-l="th">ฟรี · ไม่ต้องล็อกอิน · ไม่มีโฆษณา · ข้อมูลอยู่ในเครื่องคุณ</span></p>
@@ -118,13 +118,13 @@ html[data-lang="en"] span[data-l="en"],html[data-lang="th"] span[data-l="th"]{di
 </div>
 
 <footer><div class="wrap">
-  <div>Daily Jar · <a href="privacy.html"><span data-l="en">Privacy Policy</span><span data-l="th">นโยบายความเป็นส่วนตัว</span></a> · <a href="https://github.com/Augrixs/Aug-Jar">GitHub</a> · <a href="https://github.com/Augrixs/Aug-Jar/issues"><span data-l="en">Feedback</span><span data-l="th">ส่งฟีดแบ็ก</span></a></div>
+  <div>Daily Jar · <a href="privacy.html"><span data-l="en">Privacy Policy</span><span data-l="th">นโยบายความเป็นส่วนตัว</span></a> · <a href="https://github.com/Augrixs/Daily-Jar">GitHub</a> · <a href="https://github.com/Augrixs/Daily-Jar/issues"><span data-l="en">Feedback</span><span data-l="th">ส่งฟีดแบ็ก</span></a></div>
   <div style="margin-top:6px"><span data-l="en">Made by Augrixs. Daily Jar is not a bank and does not hold real money.</span><span data-l="th">สร้างโดย Augrixs Daily Jar ไม่ใช่ธนาคารและไม่ได้เก็บเงินจริง</span></div>
 </div></footer>
 
 <script>
 (function(){
-  var KEY='augjar-site-lang', root=document.documentElement, lang='en';
+  var KEY='dailyjar-site-lang', root=document.documentElement, lang='en';
   try{var s=localStorage.getItem(KEY); if(s==='th'||s==='en') lang=s;}catch(e){}
   function set(l){lang=l;root.setAttribute('data-lang',l);root.lang=l;document.querySelectorAll('.lang button').forEach(function(b){b.classList.toggle('on',b.dataset.set===l)});try{localStorage.setItem(KEY,l)}catch(e){}}
   document.querySelectorAll('.lang button').forEach(function(b){b.addEventListener('click',function(){set(b.dataset.set)})});

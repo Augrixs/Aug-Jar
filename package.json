@@ -1,5 +1,5 @@
 {
-  "name": "aug-jar",
+  "name": "daily-jar",
   "version": "1.0.0",
   "private": true,
   "scripts": { "test": "node --check www/app.js" },

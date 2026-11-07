@@ -9,6 +9,6 @@ A simple notebook for people who love saving money. Tap a day, choose Deposit or
 Daily Jar is not a bank and does not hold or move real money. It only records numbers you type.
 
 ## Play Store checklist
-- Package name: `com.augrixs.augjar` (permanent once published)
-- Privacy policy: https://augrixs.github.io/Aug-Jar/privacy.html (enable Pages: Settings > Pages > Source: GitHub Actions)
+- Package name: `com.augrixs.dailyjar` (permanent once published)
+- Privacy policy: https://augrixs.github.io/Daily-Jar/privacy.html (enable Pages: Settings > Pages > Source: GitHub Actions)
 - Release build: Actions > "Release AAB (Play Store)" > Run workflow (needs secret `KEYSTORE_PASSWORD`, 12+ characters)
