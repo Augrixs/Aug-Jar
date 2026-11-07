@@ -3,130 +3,201 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#0f1720">
+<meta name="theme-color" content="#0f766e">
 <title>Daily Jar – a simple savings notebook</title>
-<meta name="description" content="Daily Jar is a simple notebook for people who love saving. Tap, type the amount, add a note. No login, no ads, your data stays on your phone.">
+<meta name="description" content="Daily Jar is a simple savings notebook. Tap, type the amount, add a note. Free, no login, your data stays on your phone.">
 <link rel="icon" href="icon.svg">
 <link rel="apple-touch-icon" href="icon-512.png">
 <meta property="og:title" content="Daily Jar – a simple savings notebook">
 <meta property="og:description" content="Deposit, withdraw, notes, charts. No login. Data stays on your phone.">
 <meta property="og:image" content="icon-512.png">
 <style>
-:root{--bg:#0f1720;--panel:#17212c;--panel2:#1e2b38;--line:#2a3948;--text:#eaf2f8;--muted:#8ea3b5;--up:#2dd4bf;--down:#fb7185}
+:root{--bg:#fff;--soft:#f5f4f2;--ink:#111418;--muted:#5b6672;--line:#e6e8eb;--brand:#0f766e;--brand2:#115e59;--tint:#e3f4f1}
 *{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{margin:0;background:var(--bg);color:var(--text);font:17px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,"Noto Sans Thai",sans-serif}
-a{color:var(--up)}
-.wrap{max-width:980px;margin:0 auto;padding:0 20px}
-header{display:flex;align-items:center;justify-content:space-between;padding:16px 0}
-.brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:20px;color:var(--text);text-decoration:none}
-.brand img{width:36px;height:36px;border-radius:10px}
-.lang{display:flex;background:var(--panel2);border:1px solid var(--line);border-radius:999px;padding:3px}
-.lang button{background:none;border:0;color:var(--muted);padding:6px 14px;border-radius:999px;font:inherit;font-size:14px;cursor:pointer}
-.lang button.on{background:var(--up);color:#052a28;font-weight:700}
-.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:32px;align-items:center;padding:28px 0 40px}
-.hero h1{font-size:clamp(34px,6vw,56px);line-height:1.1;margin:0 0 14px}
-.hero p.lead{font-size:20px;color:#c9d8e4;margin:0 0 22px}
-.cta{display:flex;flex-wrap:wrap;gap:12px}
-.btn{display:inline-flex;align-items:center;gap:8px;padding:14px 22px;border-radius:14px;font-weight:800;text-decoration:none;font-size:17px;border:1px solid var(--line);background:var(--panel2);color:var(--text)}
-.btn.primary{background:var(--up);color:#052a28;border-color:var(--up)}
-.small{color:var(--muted);font-size:14px;margin-top:10px}
-.phone{justify-self:center;width:min(300px,78vw);border-radius:34px;border:8px solid #263647;background:#000;box-shadow:0 20px 60px #0009;overflow:hidden}
+html{scroll-behavior:smooth;scroll-padding-top:76px}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.6 Inter,system-ui,-apple-system,"Segoe UI",Roboto,"Noto Sans Thai",sans-serif}
+a{color:inherit}
+.wrap{max-width:1000px;margin:0 auto;padding:0 20px}
+nav{position:sticky;top:0;z-index:10;background:#ffffffee;backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;height:64px;gap:12px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:19px;text-decoration:none}
+.brand img{width:34px;height:34px;border-radius:9px}
+.links{display:flex;gap:26px;font-size:15px;color:var(--muted)}
+.links a{text-decoration:none}.links a:hover{color:var(--ink)}
+.right{display:flex;align-items:center;gap:10px}
+.lang{display:flex;border:1px solid var(--line);border-radius:999px;padding:2px;background:#fff}
+.lang button{background:none;border:0;color:var(--muted);padding:5px 11px;border-radius:999px;font:inherit;font-size:13px;cursor:pointer}
+.lang button.on{background:var(--ink);color:#fff}
+.pill{background:var(--brand);color:#fff;text-decoration:none;font-weight:700;font-size:15px;padding:10px 20px;border-radius:999px;white-space:nowrap}
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:30px;align-items:center;padding:56px 0 40px}
+.badge{display:inline-flex;align-items:center;gap:8px;background:var(--soft);border:1px solid var(--line);border-radius:999px;padding:5px 14px;font-size:13px;color:var(--muted)}
+.badge i{width:8px;height:8px;border-radius:50%;background:var(--brand)}
+h1{font-size:clamp(38px,6.4vw,60px);line-height:1.08;letter-spacing:-.02em;margin:18px 0 16px}
+.lead{font-size:19px;color:var(--muted);margin:0 0 24px;max-width:30em}
+.stores{display:flex;flex-wrap:wrap;gap:12px}
+.store{display:flex;align-items:center;gap:10px;background:#000;color:#fff;text-decoration:none;border-radius:12px;padding:9px 18px;min-width:170px}
+.store b{display:block;font-size:17px;line-height:1.15}.store small{display:block;font-size:11px;opacity:.8}
+.store .ic{font-size:24px}
+.fine{color:var(--muted);font-size:14px;margin-top:14px}
+.phone{justify-self:center;width:min(290px,76vw);border-radius:38px;border:9px solid #15191e;background:#000;box-shadow:0 30px 60px -20px #0004;overflow:hidden}
 .phone img{display:block;width:100%}
-section{padding:36px 0}
-h2{font-size:30px;margin:0 0 18px}
-.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
-.card{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:18px}
-.card .ic{font-size:28px}
-.card h3{margin:6px 0 4px;font-size:18px}
-.card p{margin:0;color:var(--muted);font-size:15px}
-.shots{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px;justify-items:center}
-.shots figure{margin:0;text-align:center}
-.shots .phone{width:min(250px,70vw);border-width:6px;border-radius:28px}
-.shots figcaption{color:var(--muted);font-size:14px;margin-top:10px}
-ol.steps{padding-left:22px;margin:0}
-ol.steps li{margin:6px 0}
-.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
-details{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:12px 16px;margin-bottom:10px}
-summary{cursor:pointer;font-weight:700}
-details p{color:#c9d8e4;margin:8px 0 2px}
-footer{border-top:1px solid var(--line);padding:24px 0 40px;color:var(--muted);font-size:14px}
-[data-l]{display:none}
-html[data-lang="en"] [data-l="en"],html[data-lang="th"] [data-l="th"]{display:revert}
-html[data-lang="en"] span[data-l="en"],html[data-lang="th"] span[data-l="th"]{display:inline}
-@media(max-width:760px){.hero{grid-template-columns:1fr;text-align:left}.phone{justify-self:start}}
+.stats{background:var(--soft);padding:30px 0}
+.stats .wrap{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;text-align:center}
+.stats b{display:block;font-size:26px}.stats span{color:var(--muted);font-size:14px}
+section{padding:70px 0}
+.eyebrow{color:var(--brand);font-weight:800;letter-spacing:.12em;font-size:13px;text-transform:uppercase;text-align:center}
+h2{font-size:clamp(28px,4.4vw,40px);line-height:1.15;letter-spacing:-.015em;text-align:center;margin:10px auto 12px;max-width:16em}
+.sub{text-align:center;color:var(--muted);max-width:34em;margin:0 auto 40px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px}
+.card{border:1px solid var(--line);border-radius:18px;padding:22px;background:linear-gradient(#fff,#fafafa)}
+.card .ic{width:40px;height:40px;border-radius:11px;background:var(--tint);display:grid;place-items:center;font-size:20px}
+.card h3{margin:14px 0 6px;font-size:17px}.card p{margin:0;color:var(--muted);font-size:15px}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+.split h2,.split .eyebrow{text-align:left;margin-left:0}
+.split ul{list-style:none;padding:0;margin:18px 0 0}
+.split li{padding:7px 0 7px 34px;position:relative;color:#3a444e;font-size:16px}
+.split li:before{content:"✓";position:absolute;left:0;top:8px;width:22px;height:22px;border-radius:50%;border:1.5px solid var(--brand);color:var(--brand);font-size:13px;display:grid;place-items:center;font-weight:800}
+.alt{background:var(--soft)}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px}
+.step{background:#fff;border:1px solid var(--line);border-radius:18px;padding:22px}
+.step .n{width:34px;height:34px;border-radius:50%;background:var(--brand);color:#fff;display:grid;place-items:center;font-weight:800;margin-bottom:10px}
+.step h3{margin:0 0 6px;font-size:17px}.step p,.step ol{margin:0;color:var(--muted);font-size:15px}.step ol{padding-left:18px}
+.faq{max-width:700px;margin:0 auto}
+details{border:1px solid var(--line);border-radius:14px;padding:16px 20px;margin-bottom:10px;background:#fff}
+summary{cursor:pointer;font-weight:700;list-style:none;display:flex;justify-content:space-between;gap:12px}
+summary::-webkit-details-marker{display:none}
+summary:after{content:"+";color:var(--muted);font-weight:400;font-size:22px;line-height:1}
+details[open] summary:after{content:"–"}
+details p{margin:10px 0 0;color:var(--muted);font-size:15px}
+.cta{background:linear-gradient(135deg,var(--brand),var(--brand2));color:#fff;border-radius:28px;padding:56px 24px;text-align:center;box-shadow:0 30px 50px -30px #0f766e}
+.cta h2{color:#fff;margin-top:0}.cta p{color:#d3f0eb;max-width:30em;margin:0 auto 24px}
+.cta .stores{justify-content:center}
+footer{background:var(--soft);border-top:1px solid var(--line);padding:44px 0 30px;margin-top:70px;font-size:15px}
+.fgrid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:28px}
+.fgrid h4{margin:0 0 10px;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.fgrid a{display:block;text-decoration:none;color:#3a444e;padding:3px 0}.fgrid a:hover{color:var(--brand)}
+.fgrid p{color:var(--muted);margin:10px 0 0;max-width:20em;font-size:14px}
+.copy{color:var(--muted);font-size:13px;margin-top:34px}
+[data-l]{display:none!important}
+html[data-lang="en"] [data-l="en"],html[data-lang="th"] [data-l="th"]{display:revert!important}
+@media(max-width:800px){.hero,.split{grid-template-columns:1fr}.links{display:none}.phone{justify-self:center}.fgrid{grid-template-columns:1fr 1fr}.stats .wrap{gap:8px}.stats b{font-size:20px}.stats span{font-size:12px}}
+@media(max-width:480px){.pill{display:none}}
 </style>
 </head>
 <body>
-<div class="wrap">
-<header>
+<nav><div class="wrap">
   <a class="brand" href="./"><img src="icon-512.png" alt=""> Daily Jar</a>
-  <div class="lang" role="group" aria-label="Language"><button data-set="en" class="on">English</button><button data-set="th">ไทย</button></div>
-</header>
+  <div class="links"><a href="#features"><span data-l="en">Features</span><span data-l="th">ฟีเจอร์</span></a><a href="#how"><span data-l="en">How it works</span><span data-l="th">วิธีใช้</span></a><a href="#faq"><span data-l="en">FAQ</span><span data-l="th">คำถาม</span></a></div>
+  <div class="right"><div class="lang"><button data-set="en" class="on">EN</button><button data-set="th">ไทย</button></div><a class="pill" href="#get"><span data-l="en">Get the app</span><span data-l="th">โหลดแอป</span></a></div>
+</div></nav>
 
+<div class="wrap">
 <div class="hero">
   <div>
-    <h1><span data-l="en">Your simple<br>savings notebook.</span><span data-l="th">สมุดออมเงิน<br>แบบง่ายๆ ของคุณ</span></h1>
-    <p class="lead"><span data-l="en">Tap Deposit or Withdraw, type the amount, add a note. Daily Jar writes the date and time for you and keeps a running balance, like a real notebook.</span><span data-l="th">กดฝากหรือถอน พิมพ์จำนวนเงิน เขียนโน้ต Daily Jar ลงวันที่และเวลาให้เอง พร้อมยอดคงเหลือสะสม เหมือนสมุดจริง</span></p>
-    <div class="cta">
-      <a class="btn primary" href="https://github.com/Augrixs/Daily-Jar/releases/download/latest/DailyJar.apk">⬇ <span data-l="en">Download for Android (APK)</span><span data-l="th">โหลดสำหรับ Android (APK)</span></a>
-      <a class="btn" href="app/">🌐 <span data-l="en">Open web app</span><span data-l="th">เปิดเว็บแอป</span></a>
+    <span class="badge"><i></i><span data-l="en">Free for Android and the web</span><span data-l="th">ฟรี สำหรับ Android และเว็บ</span></span>
+    <h1><span data-l="en">Save a little, see it grow.</span><span data-l="th">เก็บทีละนิด เห็นยอดโตทุกวัน</span></h1>
+    <p class="lead"><span data-l="en">A simple notebook for your savings. Tap Deposit or Withdraw, type the amount, add a note. Daily Jar writes the date and time and keeps your balance.</span><span data-l="th">สมุดออมเงินแบบง่ายๆ กดฝากหรือถอน พิมพ์จำนวน เขียนโน้ต Daily Jar ลงวันที่เวลาและคำนวณยอดคงเหลือให้</span></p>
+    <div class="stores">
+      <a class="store" href="https://github.com/Augrixs/Daily-Jar/releases/download/latest/DailyJar.apk"><span class="ic">🤖</span><span><small><span data-l="en">Download for</span><span data-l="th">ดาวน์โหลดสำหรับ</span></small><b>Android APK</b></span></a>
+      <a class="store" href="app/"><span class="ic">🌐</span><span><small><span data-l="en">Open in browser</span><span data-l="th">เปิดในเบราว์เซอร์</span></small><b>Web app</b></span></a>
     </div>
-    <p class="small"><span data-l="en">Free · No login · No ads · Your data stays on your phone</span><span data-l="th">ฟรี · ไม่ต้องล็อกอิน · ไม่มีโฆษณา · ข้อมูลอยู่ในเครื่องคุณ</span></p>
+    <p class="fine"><span data-l="en">Free · No login · No ads · English and ไทย</span><span data-l="th">ฟรี · ไม่ต้องล็อกอิน · ไม่มีโฆษณา · English และ ไทย</span></p>
   </div>
-  <div class="phone"><img src="shot-notebook.png" alt="Daily Jar notebook screen with deposits in green and withdrawals in red"></div>
+  <div class="phone"><img src="shot-notebook.png" alt="Daily Jar notebook with deposits in green and withdrawals in red"></div>
+</div>
 </div>
 
-<section>
-  <h2><span data-l="en">What you get</span><span data-l="th">ฟีเจอร์</span></h2>
-  <div class="cards">
-    <div class="card"><div class="ic">📒</div><h3><span data-l="en">A real notebook table</span><span data-l="th">ตารางแบบสมุดจริง</span></h3><p><span data-l="en">31 rows per table, then the next table. Deposits are green, withdrawals are red.</span><span data-l="th">ตารางละ 31 แถว เต็มแล้วไปตารางถัดไป ฝากสีเขียว ถอนสีแดง</span></p></div>
-    <div class="card"><div class="ic">🕒</div><h3><span data-l="en">Date and time, automatic</span><span data-l="th">ลงวันที่และเวลาให้เอง</span></h3><p><span data-l="en">Every entry is stamped when you save it, for example Friday 6 November 2026 17:00.</span><span data-l="th">ทุกรายการลงเวลาตอนบันทึก เช่น Friday 6 November 2026 17:00</span></p></div>
-    <div class="card"><div class="ic">✏️</div><h3><span data-l="en">Fix mistakes</span><span data-l="th">แก้ที่เขียนผิดได้</span></h3><p><span data-l="en">Tap the pencil to change the amount, type or note. The balance updates.</span><span data-l="th">กดดินสอเพื่อแก้จำนวน ประเภท หรือโน้ต ยอดคงเหลือคำนวณใหม่</span></p></div>
-    <div class="card"><div class="ic">📊</div><h3><span data-l="en">Charts</span><span data-l="th">กราฟ</span></h3><p><span data-l="en">Bar and pie charts by week, month and year. See which day or month you saved or spent the most.</span><span data-l="th">กราฟแท่งและวงกลม รายสัปดาห์ เดือน ปี ดูว่าวันหรือเดือนไหนฝากหรือถอนมากสุด</span></p></div>
-    <div class="card"><div class="ic">🔒</div><h3><span data-l="en">Private by design</span><span data-l="th">เป็นส่วนตัวตั้งแต่ต้น</span></h3><p><span data-l="en">No account and no server. Everything is stored only on your device.</span><span data-l="th">ไม่มีบัญชี ไม่มีเซิร์ฟเวอร์ ทุกอย่างเก็บในเครื่องคุณเท่านั้น</span></p></div>
-    <div class="card"><div class="ic">💾</div><h3><span data-l="en">Back up anytime</span><span data-l="th">สำรองข้อมูลได้</span></h3><p><span data-l="en">Export a backup file or CSV, and restore it on a new phone.</span><span data-l="th">ส่งออกไฟล์สำรองหรือ CSV แล้วกู้คืนบนมือถือเครื่องใหม่</span></p></div>
-  </div>
-</section>
+<div class="stats"><div class="wrap">
+  <div><b>31</b><span data-l="en">rows per notebook table</span><span data-l="th">แถวต่อตาราง</span></div>
+  <div><b>3</b><span data-l="en">chart ranges: week, month, year</span><span data-l="th">ช่วงกราฟ: สัปดาห์ เดือน ปี</span></div>
+  <div><b>0</b><span data-l="en">accounts, ads or trackers</span><span data-l="th">บัญชี โฆษณา หรือตัวติดตาม</span></div>
+</div></div>
 
-<section>
-  <h2><span data-l="en">Screenshots</span><span data-l="th">ภาพตัวอย่าง</span></h2>
-  <div class="shots">
-    <figure><div class="phone"><img src="shot-notebook.png" alt="Notebook"></div><figcaption><span data-l="en">Notebook</span><span data-l="th">สมุด</span></figcaption></figure>
-    <figure><div class="phone"><img src="shot-add.png" alt="Add a deposit"></div><figcaption><span data-l="en">Add a deposit</span><span data-l="th">เพิ่มการฝาก</span></figcaption></figure>
-    <figure><div class="phone"><img src="shot-charts.png" alt="Charts"></div><figcaption><span data-l="en">Charts</span><span data-l="th">กราฟ</span></figcaption></figure>
+<section id="features"><div class="wrap">
+  <div class="eyebrow"><span data-l="en">Features</span><span data-l="th">ฟีเจอร์</span></div>
+  <h2><span data-l="en">Everything a savings notebook needs</span><span data-l="th">ครบทุกอย่างที่สมุดออมเงินควรมี</span></h2>
+  <p class="sub"><span data-l="en">No bank link, no sign-up. Just you and your numbers.</span><span data-l="th">ไม่ต้องผูกธนาคาร ไม่ต้องสมัคร มีแค่คุณกับตัวเลขของคุณ</span></p>
+  <div class="grid">
+    <div class="card"><div class="ic">📒</div><h3><span data-l="en">A real notebook table</span><span data-l="th">ตารางแบบสมุดจริง</span></h3><p><span data-l="en">31 rows per table, then the next one. Deposits green, withdrawals red.</span><span data-l="th">ตารางละ 31 แถว เต็มแล้วไปตารางถัดไป ฝากสีเขียว ถอนสีแดง</span></p></div>
+    <div class="card"><div class="ic">🕒</div><h3><span data-l="en">Date and time, automatic</span><span data-l="th">ลงวันเวลาให้เอง</span></h3><p><span data-l="en">Every entry is stamped when you save it.</span><span data-l="th">ทุกรายการลงวันที่และเวลาตอนบันทึก</span></p></div>
+    <div class="card"><div class="ic">✏️</div><h3><span data-l="en">Fix mistakes</span><span data-l="th">แก้ที่เขียนผิดได้</span></h3><p><span data-l="en">Tap the pencil to change amount, type or note. Balance updates.</span><span data-l="th">กดดินสอแก้จำนวน ประเภท หรือโน้ต ยอดคำนวณใหม่</span></p></div>
+    <div class="card"><div class="ic">📊</div><h3><span data-l="en">Charts</span><span data-l="th">กราฟ</span></h3><p><span data-l="en">Bar and pie charts show your best and biggest days and months.</span><span data-l="th">กราฟแท่งและวงกลม ดูวันและเดือนที่ฝากหรือถอนมากสุด</span></p></div>
+    <div class="card"><div class="ic">🔒</div><h3><span data-l="en">Private by design</span><span data-l="th">เป็นส่วนตัว</span></h3><p><span data-l="en">No account, no server. Data stays on your device.</span><span data-l="th">ไม่มีบัญชี ไม่มีเซิร์ฟเวอร์ ข้อมูลอยู่ในเครื่องคุณ</span></p></div>
+    <div class="card"><div class="ic">💾</div><h3><span data-l="en">Back up anytime</span><span data-l="th">สำรองข้อมูลได้</span></h3><p><span data-l="en">Export a backup or CSV and restore on a new phone.</span><span data-l="th">ส่งออกไฟล์สำรองหรือ CSV แล้วกู้คืนบนเครื่องใหม่</span></p></div>
   </div>
-</section>
+</div></section>
 
-<section>
-  <h2><span data-l="en">Install</span><span data-l="th">วิธีติดตั้ง</span></h2>
-  <div class="two">
-    <div class="card"><h3>🤖 Android</h3>
-      <ol class="steps"><li><span data-l="en">Tap “Download for Android (APK)”.</span><span data-l="th">กด “โหลดสำหรับ Android (APK)”</span></li><li><span data-l="en">Open the downloaded file and tap Install.</span><span data-l="th">เปิดไฟล์ที่โหลดแล้วกดติดตั้ง</span></li><li><span data-l="en">If Play Protect warns you, tap “More details”, then “Install anyway”. The app is not on Google Play yet.</span><span data-l="th">ถ้า Play Protect เตือน กด “รายละเอียดเพิ่มเติม” แล้ว “ติดตั้งต่อไป” เพราะแอปยังไม่อยู่ใน Google Play</span></li></ol></div>
-    <div class="card"><h3>🍎 iPhone / any browser</h3>
-      <ol class="steps"><li><span data-l="en">Open the web app in Safari.</span><span data-l="th">เปิดเว็บแอปใน Safari</span></li><li><span data-l="en">Tap Share, then “Add to Home Screen”.</span><span data-l="th">กดแชร์ แล้ว “เพิ่มที่หน้าจอโฮม”</span></li><li><span data-l="en">Open it from your home screen like a normal app.</span><span data-l="th">เปิดจากหน้าจอโฮมได้เหมือนแอปปกติ</span></li></ol></div>
+<section class="alt"><div class="wrap split">
+  <div class="phone" style="justify-self:center"><img src="shot-charts.png" alt="Daily Jar charts"></div>
+  <div>
+    <div class="eyebrow"><span data-l="en">Charts</span><span data-l="th">กราฟ</span></div>
+    <h2><span data-l="en">See where your money goes</span><span data-l="th">ดูว่าเงินไปไหนบ้าง</span></h2>
+    <ul>
+      <li><span data-l="en">Week, month and year views</span><span data-l="th">ดูได้ทั้งสัปดาห์ เดือน และปี</span></li>
+      <li><span data-l="en">Bars for each day or month, plus a pie of deposits vs withdrawals</span><span data-l="th">แท่งรายวันหรือรายเดือน และวงกลมเทียบฝากกับถอน</span></li>
+      <li><span data-l="en">Years always shown in CE, in both languages</span><span data-l="th">ปีแสดงเป็น ค.ศ. ทั้งสองภาษา</span></li>
+    </ul>
   </div>
-</section>
+</div></section>
 
-<section>
-  <h2><span data-l="en">Questions</span><span data-l="th">คำถามที่พบบ่อย</span></h2>
-  <details><summary><span data-l="en">Is Daily Jar a bank?</span><span data-l="th">Daily Jar เป็นธนาคารไหม</span></summary><p><span data-l="en">No. It never holds or moves real money. It only records the numbers you type.</span><span data-l="th">ไม่ใช่ ไม่ได้เก็บหรือโอนเงินจริง เป็นเพียงตัวบันทึกตัวเลขที่คุณพิมพ์</span></p></details>
-  <details><summary><span data-l="en">Where is my data?</span><span data-l="th">ข้อมูลของฉันอยู่ที่ไหน</span></summary><p><span data-l="en">Only on your own device. Other people who install the app start with an empty notebook. If you uninstall the app or clear its data, it is gone, so use Menu → Back up now and then.</span><span data-l="th">อยู่ในเครื่องคุณเท่านั้น คนอื่นที่ติดตั้งจะเริ่มจากสมุดว่าง ถ้าถอนการติดตั้งหรือล้างข้อมูลแอป ข้อมูลจะหาย ควรใช้ เมนู → สำรองข้อมูล เป็นระยะ</span></p></details>
-  <details><summary><span data-l="en">Is it free?</span><span data-l="th">ฟรีไหม</span></summary><p><span data-l="en">Yes. No ads, no subscription.</span><span data-l="th">ฟรี ไม่มีโฆษณา ไม่มีรายเดือน</span></p></details>
-  <details><summary><span data-l="en">Why is the year not in Buddhist era?</span><span data-l="th">ทำไมปีเป็น ค.ศ.</span></summary><p><span data-l="en">Daily Jar always shows years in CE (for example 2026), in both languages.</span><span data-l="th">Daily Jar แสดงปีเป็น ค.ศ. (เช่น 2026) ทั้งสองภาษา</span></p></details>
-</section>
-</div>
+<section id="how"><div class="wrap">
+  <div class="eyebrow"><span data-l="en">How it works</span><span data-l="th">วิธีใช้</span></div>
+  <h2><span data-l="en">Three taps and you're done</span><span data-l="th">แค่สามขั้นตอน</span></h2>
+  <p class="sub"><span data-l="en">Type 20 and tap Deposit to save 20. That's the whole idea.</span><span data-l="th">พิมพ์ 20 แล้วกดฝาก ก็ฝาก 20 แค่นั้นเอง</span></p>
+  <div class="steps">
+    <div class="step"><div class="n">1</div><h3><span data-l="en">Tap Deposit or Withdraw</span><span data-l="th">กดฝากหรือถอน</span></h3><p><span data-l="en">Choose what you want to record.</span><span data-l="th">เลือกสิ่งที่จะบันทึก</span></p></div>
+    <div class="step"><div class="n">2</div><h3><span data-l="en">Type amount and note</span><span data-l="th">พิมพ์จำนวนและโน้ต</span></h3><p><span data-l="en">For example “Allowance” or “Bubble tea”.</span><span data-l="th">เช่น “เงินค่าขนม” หรือ “ชานม”</span></p></div>
+    <div class="step"><div class="n">3</div><h3><span data-l="en">Save</span><span data-l="th">บันทึก</span></h3><p><span data-l="en">Date, time and balance are filled in for you.</span><span data-l="th">วันที่ เวลา และยอดคงเหลือใส่ให้อัตโนมัติ</span></p></div>
+  </div>
+</div></section>
+
+<section class="alt" id="get"><div class="wrap">
+  <div class="eyebrow"><span data-l="en">Install</span><span data-l="th">ติดตั้ง</span></div>
+  <h2><span data-l="en">Get Daily Jar</span><span data-l="th">โหลด Daily Jar</span></h2>
+  <p class="sub"><span data-l="en">Not on Google Play yet, so install the APK directly or use the web app.</span><span data-l="th">ยังไม่อยู่ใน Google Play ติดตั้งไฟล์ APK โดยตรงหรือใช้เว็บแอป</span></p>
+  <div class="steps" style="max-width:760px;margin:0 auto">
+    <div class="step"><h3>🤖 Android</h3><ol><li><span data-l="en">Tap Download Android APK.</span><span data-l="th">กดดาวน์โหลด Android APK</span></li><li><span data-l="en">Open the file and tap Install.</span><span data-l="th">เปิดไฟล์แล้วกดติดตั้ง</span></li><li><span data-l="en">If Play Protect warns you, tap More details, then Install anyway.</span><span data-l="th">ถ้า Play Protect เตือน กดรายละเอียดเพิ่มเติม แล้วติดตั้งต่อไป</span></li></ol></div>
+    <div class="step"><h3>🍎 iPhone / browser</h3><ol><li><span data-l="en">Open the web app in Safari.</span><span data-l="th">เปิดเว็บแอปใน Safari</span></li><li><span data-l="en">Tap Share, then Add to Home Screen.</span><span data-l="th">กดแชร์ แล้วเพิ่มที่หน้าจอโฮม</span></li></ol></div>
+  </div>
+</div></section>
+
+<section id="faq"><div class="wrap">
+  <div class="eyebrow">FAQ</div>
+  <h2><span data-l="en">Frequently asked questions</span><span data-l="th">คำถามที่พบบ่อย</span></h2>
+  <p class="sub"><span data-l="en">Straight answers to the things people ask most.</span><span data-l="th">คำตอบตรงๆ สำหรับเรื่องที่ถามบ่อย</span></p>
+  <div class="faq">
+    <details><summary><span data-l="en">Is Daily Jar a bank?</span><span data-l="th">Daily Jar เป็นธนาคารไหม</span></summary><p><span data-l="en">No. It never holds or moves real money. It only records the numbers you type.</span><span data-l="th">ไม่ใช่ ไม่ได้เก็บหรือโอนเงินจริง เป็นเพียงตัวบันทึกตัวเลขที่คุณพิมพ์</span></p></details>
+    <details><summary><span data-l="en">Do I need an account?</span><span data-l="th">ต้องมีบัญชีไหม</span></summary><p><span data-l="en">No. There is no login. Everyone who installs the app starts with their own empty notebook.</span><span data-l="th">ไม่ต้อง ไม่มีล็อกอิน ทุกคนที่ติดตั้งจะเริ่มจากสมุดว่างของตัวเอง</span></p></details>
+    <details><summary><span data-l="en">Where is my data stored?</span><span data-l="th">ข้อมูลเก็บที่ไหน</span></summary><p><span data-l="en">Only on your device. If you uninstall the app or clear its data it is gone, so use Menu → Back up now and then.</span><span data-l="th">เก็บในเครื่องคุณเท่านั้น ถ้าถอนการติดตั้งหรือล้างข้อมูล ข้อมูลจะหาย ควรใช้ เมนู → สำรองข้อมูล เป็นระยะ</span></p></details>
+    <details><summary><span data-l="en">Is it free?</span><span data-l="th">ฟรีไหม</span></summary><p><span data-l="en">Yes. No ads and no subscription.</span><span data-l="th">ฟรี ไม่มีโฆษณาและไม่มีรายเดือน</span></p></details>
+    <details><summary><span data-l="en">How do I get help?</span><span data-l="th">ขอความช่วยเหลือได้ที่ไหน</span></summary><p><span data-l="en">Open an issue on GitHub and we will take a look.</span><span data-l="th">เปิด issue บน GitHub แล้วเราจะดูให้</span></p></details>
+  </div>
+</div></section>
+
+<div class="wrap"><div class="cta">
+  <h2><span data-l="en">Start your jar today</span><span data-l="th">เริ่มเก็บเงินวันนี้</span></h2>
+  <p><span data-l="en">Free, private, and ready in seconds.</span><span data-l="th">ฟรี เป็นส่วนตัว พร้อมใช้ในไม่กี่วินาที</span></p>
+  <div class="stores">
+    <a class="store" href="https://github.com/Augrixs/Daily-Jar/releases/download/latest/DailyJar.apk"><span class="ic">🤖</span><span><small><span data-l="en">Download for</span><span data-l="th">ดาวน์โหลดสำหรับ</span></small><b>Android APK</b></span></a>
+    <a class="store" href="app/"><span class="ic">🌐</span><span><small><span data-l="en">Open in browser</span><span data-l="th">เปิดในเบราว์เซอร์</span></small><b>Web app</b></span></a>
+  </div>
+</div></div>
 
 <footer><div class="wrap">
-  <div>Daily Jar · <a href="privacy.html"><span data-l="en">Privacy Policy</span><span data-l="th">นโยบายความเป็นส่วนตัว</span></a> · <a href="https://github.com/Augrixs/Daily-Jar">GitHub</a> · <a href="https://github.com/Augrixs/Daily-Jar/issues"><span data-l="en">Feedback</span><span data-l="th">ส่งฟีดแบ็ก</span></a></div>
-  <div style="margin-top:6px"><span data-l="en">Made by Augrixs. Daily Jar is not a bank and does not hold real money.</span><span data-l="th">สร้างโดย Augrixs Daily Jar ไม่ใช่ธนาคารและไม่ได้เก็บเงินจริง</span></div>
+  <div class="fgrid">
+    <div><a class="brand" href="./" style="padding:0"><img src="icon-512.png" alt=""> Daily Jar</a><p><span data-l="en">A simple savings notebook. Not a bank and does not hold real money.</span><span data-l="th">สมุดออมเงินแบบง่ายๆ ไม่ใช่ธนาคารและไม่ได้เก็บเงินจริง</span></p></div>
+    <div><h4><span data-l="en">Product</span><span data-l="th">ผลิตภัณฑ์</span></h4><a href="#features"><span data-l="en">Features</span><span data-l="th">ฟีเจอร์</span></a><a href="#how"><span data-l="en">How it works</span><span data-l="th">วิธีใช้</span></a><a href="#faq">FAQ</a><a href="#get"><span data-l="en">Download</span><span data-l="th">ดาวน์โหลด</span></a></div>
+    <div><h4><span data-l="en">Support</span><span data-l="th">ช่วยเหลือ</span></h4><a href="https://github.com/Augrixs/Daily-Jar/issues"><span data-l="en">Send feedback</span><span data-l="th">ส่งฟีดแบ็ก</span></a><a href="https://github.com/Augrixs/Daily-Jar">GitHub</a></div>
+    <div><h4><span data-l="en">Legal</span><span data-l="th">กฎหมาย</span></h4><a href="privacy.html"><span data-l="en">Privacy Policy</span><span data-l="th">นโยบายความเป็นส่วนตัว</span></a></div>
+  </div>
+  <div class="copy">© 2026 Daily Jar · Augrixs</div>
 </div></footer>
 
 <script>
 (function(){
   var KEY='dailyjar-site-lang', root=document.documentElement, lang='en';
   try{var s=localStorage.getItem(KEY); if(s==='th'||s==='en') lang=s;}catch(e){}
-  function set(l){lang=l;root.setAttribute('data-lang',l);root.lang=l;document.querySelectorAll('.lang button').forEach(function(b){b.classList.toggle('on',b.dataset.set===l)});try{localStorage.setItem(KEY,l)}catch(e){}}
+  function set(l){root.setAttribute('data-lang',l);root.lang=l;document.querySelectorAll('.lang button').forEach(function(b){b.classList.toggle('on',b.dataset.set===l)});try{localStorage.setItem(KEY,l)}catch(e){}}
   document.querySelectorAll('.lang button').forEach(function(b){b.addEventListener('click',function(){set(b.dataset.set)})});
   set(lang);
 })();
